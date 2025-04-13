@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="John Doe" />
+
+
+
+<meta name="description" content="Q2.2 Survival Analysis Report12212826 肖涵曦 01_IntroOverview生存分析（Survival Analysis）是一系列统计方法，旨在分析和预测某一事件发生所需的时间。该方法最早起源于医疗行业，主要关注“至死亡时间”的建模与推断。随着研究的发展，生存分析已广泛应用于各行各业，包括金融、电信、制造、保险等。 Telco Use Case Exampl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q2.2 Survival Analysis Report">
+<meta property="og:url" content="http://example.com/2025/04/13/Q2.2%20Survival%20Analysis%20Report/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Q2.2 Survival Analysis Report12212826 肖涵曦 01_IntroOverview生存分析（Survival Analysis）是一系列统计方法，旨在分析和预测某一事件发生所需的时间。该方法最早起源于医疗行业，主要关注“至死亡时间”的建模与推断。随着研究的发展，生存分析已广泛应用于各行各业，包括金融、电信、制造、保险等。 Telco Use Case Exampl">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/1.png">
+<meta property="og:image" content="http://example.com/images/2.png">
+<meta property="og:image" content="http://example.com/images/4.png">
+<meta property="og:image" content="http://example.com/images/5.png">
+<meta property="og:image" content="http://example.com/images/6.png">
+<meta property="og:image" content="http://example.com/images/7.png">
+<meta property="og:image" content="http://example.com/images/8.png">
+<meta property="article:published_time" content="2025-04-13T13:45:00.000Z">
+<meta property="article:modified_time" content="2025-04-13T13:58:22.658Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="交作业啦！">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/1.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Q2.2 Survival Analysis Report | Hexo</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/路飞.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/12212826@mail.sustech.edu.cn" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E4%BD%9C%E4%B8%9A%E5%95%A6%EF%BC%81/" rel="tag">交作业啦！</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/路飞.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/12212826@mail.sustech.edu.cn" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Q2.2 Survival Analysis Report" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2025/04/13/Q2.2%20Survival%20Analysis%20Report/" class="article-date">
+      <time datetime="2025-04-13T13:45:00.000Z" itemprop="datePublished">2025-04-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Q2.2 Survival Analysis Report
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E4%BD%9C%E4%B8%9A%E5%95%A6%EF%BC%81/" rel="tag">交作业啦！</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Q2-2-Survival-Analysis-Report"><a href="#Q2-2-Survival-Analysis-Report" class="headerlink" title="Q2.2 Survival Analysis Report"></a>Q2.2 Survival Analysis Report</h1><h3 id="12212826-肖涵曦"><a href="#12212826-肖涵曦" class="headerlink" title="12212826 肖涵曦"></a>12212826 肖涵曦</h3><hr>
+<h2 id="01-Intro"><a href="#01-Intro" class="headerlink" title="01_Intro"></a>01_Intro</h2><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>生存分析（Survival Analysis）是一系列统计方法，旨在分析和预测某一事件发生所需的时间。该方法最早起源于医疗行业，主要关注“至死亡时间”的建模与推断。随着研究的发展，生存分析已广泛应用于各行各业，包括金融、电信、制造、保险等。</p>
+<h3 id="Telco-Use-Case-Examples"><a href="#Telco-Use-Case-Examples" class="headerlink" title="Telco Use Case Examples"></a>Telco Use Case Examples</h3><p>在电信行业，生存分析可广泛应用于如下业务场景：</p>
+<ul>
+<li><strong>客户留存（Customer Retention）</strong>：通常认为，保留现有客户的成本低于获取新客户的成本。以取消服务作为事件变量，生存分析可帮助 Telco 企业更准确地预测哪些客户更有可能在未来某个时间点流失，从而提前采取挽留措施。</li>
+<li><strong>硬件故障预测（Hardware Failures）</strong>：网络设备的可靠性影响客户的整体体验。以“设备失效时间”为事件变量，生存分析可用于预测设备的维修或更换时间，提高运维效率。</li>
+<li><strong>套餐和设备升级（Device and Data Plan Upgrades）</strong>：客户生命周期中存在多个关键时点，如套餐升级或设备更换。生存分析可预测客户下一次变更的时间，提前进行个性化推荐和干预。</li>
+</ul>
+<h3 id="About-This-Series-of-Notebooks"><a href="#About-This-Series-of-Notebooks" class="headerlink" title="About This Series of Notebooks"></a>About This Series of Notebooks</h3><p>该系列 Notebook 旨在帮助读者快速掌握并应用生存分析，内容包括：</p>
+<ul>
+<li><strong>Kaplan-Meier 估计和 Log-Rank 检验</strong></li>
+<li><strong>Cox 比例风险模型（Cox Proportional Hazards）</strong></li>
+<li><strong>加速失效时间模型（Accelerated Failure Time, AFT）</strong></li>
+<li><strong>客户生命周期价值建模（Customer Lifetime Value）</strong></li>
+</ul>
+<h3 id="About-the-Data"><a href="#About-the-Data" class="headerlink" title="About the Data"></a>About the Data</h3><p>本项目使用的数据集来自 IBM，模拟了一个虚拟的电信公司，数据集中每一行代表一位客户，包括其人口信息、服务使用情况、订阅状态等关键变量。</p>
+<p>我们特别关注两个核心字段：</p>
+<ul>
+<li><code>tenure</code>：客户与公司的关系持续时间（若未流失，则为当前时间）。</li>
+<li><code>churn</code>：布尔值，标识客户是否已流失（1 表示流失，0 表示仍在服务中）。</li>
+</ul>
+<h3 id="Configure-the-Environment"><a href="#Configure-the-Environment" class="headerlink" title="Configure the Environment"></a>Configure the Environment</h3><p>我们使用本地 PySpark 环境（不使用 Delta Lake），并完成了以下准备工作：</p>
+<ul>
+<li>导入相关 Python 和 PySpark 库（如 lifelines、matplotlib、seaborn 等）</li>
+<li>设置路径并加载 IBM Telco 数据集</li>
+<li>对数据进行清洗与转换（包括 one-hot 编码、缺失值处理等）</li>
+<li>构建分析用的 DataFrame（如 survival_pd）</li>
+<li>拟合 CoxPH 和 AFT 模型，为后续分析做准备</li>
+</ul>
+<p>好的，接下来是第二部分的报告撰写内容：<strong>02_Kaplan-Meier</strong>，我会继续使用中文描述，并保留英文标题，方便结构清晰和统一风格。</p>
+<hr>
+<h2 id="02-Kaplan-Meier"><a href="#02-Kaplan-Meier" class="headerlink" title="02_Kaplan-Meier"></a>02_Kaplan-Meier</h2><h3 id="Model-Intro"><a href="#Model-Intro" class="headerlink" title="Model Intro"></a>Model Intro</h3><p>Kaplan-Meier（简称 KM）是一种用于估计“生存函数”的非参数方法，可以理解为它帮助我们回答这个问题：</p>
+<blockquote>
+<p>在某个时间点，某个对象（客户）还存活&#x2F;未流失的概率是多少？</p>
+</blockquote>
+<p>Kaplan-Meier 不需要对数据的分布做出假设，因此非常适合于探索性分析阶段。在本案例中，我们的“事件”是客户的流失（churn），生存时间是客户的服务期限（tenure）。</p>
+<hr>
+<h3 id="Key-steps"><a href="#Key-steps" class="headerlink" title="Key steps"></a>Key steps</h3><p>我们使用 <code>lifelines</code> 库中的 <code>KaplanMeierFitter</code> 来构建模型，并分析了以下内容：</p>
+<h4 id="1-全体用户的生存曲线"><a href="#1-全体用户的生存曲线" class="headerlink" title="1. 全体用户的生存曲线"></a>1. 全体用户的生存曲线</h4><p>我们首先绘制了整个客户群体的生存曲线，这条曲线展示了随着服务月份的增加，客户仍在使用服务的概率如何变化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lifelines <span class="keyword">import</span> KaplanMeierFitter</span><br><span class="line"></span><br><span class="line">kmf = KaplanMeierFitter()</span><br><span class="line">kmf.fit(durations=survival_pd[<span class="string">&quot;tenure&quot;</span>], event_observed=survival_pd[<span class="string">&quot;churn&quot;</span>])</span><br><span class="line">kmf.plot_survival_function()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/1.png" alt="Image Alt Text"></p>
+<ul>
+<li><p>横轴为“服务月份”（tenure）</p>
+</li>
+<li><p>纵轴为“生存概率”（survival probability）</p>
+</li>
+<li><p>曲线整体呈下降趋势，表示随着时间推移，客户流失概率在增加</p>
+</li>
+</ul>
+<hr>
+<h4 id="2-不同分类变量下的生存对比"><a href="#2-不同分类变量下的生存对比" class="headerlink" title="2. 不同分类变量下的生存对比"></a>2. 不同分类变量下的生存对比</h4><p>我们进一步分析了多个关键特征对客户生存概率的影响。比如：</p>
+<ul>
+<li>有无配偶（<code>partner</code>）</li>
+<li>是否有 dependents（<code>dependents</code>）</li>
+<li>不同的互联网服务类型（<code>internetService</code>）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 工具函数：画出不同组别的生存曲线</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_km</span>(<span class="params">col</span>):</span><br><span class="line">    ax = plt.subplot(<span class="number">111</span>)  <span class="comment"># 创建图形对象</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> telco_pd[col].unique():  <span class="comment"># 遍历该列的所有类别（如男/女）</span></span><br><span class="line">        ix = telco_pd[col] == r       <span class="comment"># 当前类别的布尔索引</span></span><br><span class="line">        kmf.fit(T[ix], C[ix], label=r)  <span class="comment"># 拟合该组的生存曲线</span></span><br><span class="line">        kmf.plot(ax=ax)                <span class="comment"># 在同一张图上画出所有类别的曲线</span></span><br><span class="line"><span class="comment"># 👉 示例：用 gender（性别）来画生存曲线</span></span><br><span class="line">plot_km(<span class="string">&#x27;gender&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2.png" alt="Image Alt Text"></p>
+<ul>
+<li>例如在 <code>gender</code> 对比中可以看到女性用户流失率会稍比男性高一些。</li>
+</ul>
+<hr>
+<h4 id="3-Log-Rank-检验（检验组间生存曲线是否显著不同）"><a href="#3-Log-Rank-检验（检验组间生存曲线是否显著不同）" class="headerlink" title="3. Log-Rank 检验（检验组间生存曲线是否显著不同）"></a>3. Log-Rank 检验（检验组间生存曲线是否显著不同）</h4><p>在比较不同组别的生存曲线时，我们使用了 <code>log-rank test</code> 来判断它们是否具有统计学上的显著差异：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 👉 输出 log-rank 检验结果，查看是否男/女之间有统计显著差异</span></span><br><span class="line">print_logrank(<span class="string">&#x27;gender&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>test_statistic</th>
+<th>p</th>
+<th>-log2(p)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Female Male</td>
+<td>2.038938</td>
+<td>0.153317</td>
+<td>2.705414</td>
+</tr>
+</tbody></table>
+<ul>
+<li>如果 <code>p-value &lt; 0.05</code>，说明两个组别的生存曲线存在显著差异</li>
+<li>例如在 <code>gender</code> 结果显示，p值大于0.05，说明差异不明显。</li>
+</ul>
+<hr>
+<p>太好了！根据你提供的代码和前文结构，我将继续完成报告的第 <strong>03_Cox Proportional Hazards</strong> 部分，使用和前面一致的中文描述、英文标题和 Markdown 报告结构。</p>
+<hr>
+<h2 id="03-Cox-Proportional-Hazards"><a href="#03-Cox-Proportional-Hazards" class="headerlink" title="03_Cox Proportional Hazards"></a>03_Cox Proportional Hazards</h2><h3 id="Model-Intro-1"><a href="#Model-Intro-1" class="headerlink" title="Model Intro"></a>Model Intro</h3><p>Cox Proportional Hazards（Cox PH）模型是一种半参数的回归模型，被广泛应用于生存分析中。它的优势在于：</p>
+<ul>
+<li>不需要对基准生存函数（baseline survival function）做具体分布假设。</li>
+<li>可用于同时评估多个协变量对生存时间的影响。</li>
+<li>输出结果易于解释：每个变量对应一个 <strong>风险比（Hazard Ratio）</strong>。</li>
+</ul>
+<p><strong>基本思想：</strong> Cox 模型通过估计每个变量的回归系数，来计算相对风险。模型形式如下：<br>$$<br>h(t∣X)&#x3D;h0(t)⋅exp⁡(β_1X_1+β_2X_2+⋯+β_nX_n)h(t|X) &#x3D; h_0(t) \cdot \exp(\beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n)<br>$$</p>
+<ul>
+<li>其中，<code>h(t∣X)h(t|X)</code>  是个体的风险函数</li>
+<li><code>h_0(t)</code> 是未知的基准风险函数</li>
+<li>βi 是协变量的系数</li>
+</ul>
+<hr>
+<h3 id="Model-Building-Process"><a href="#Model-Building-Process" class="headerlink" title="Model Building Process"></a>Model Building Process</h3><p>我们从银层数据（<code>silver_monthly_customers</code>）中读取数据，并完成以下操作：</p>
+<ul>
+<li>将分类变量进行 One-hot 编码。</li>
+<li>选取与模型相关的变量：<ul>
+<li>生存时间：<code>tenure</code></li>
+<li>事件状态：<code>churn</code></li>
+<li>协变量：如是否有家属、网络服务类型、是否有技术支持等。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建模型数据并拟合 CoxPH 模型</span></span><br><span class="line">cph.fit(survival_pd, <span class="string">&#x27;tenure&#x27;</span>, <span class="string">&#x27;churn&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Results：Hazard-Ratios"><a href="#Results：Hazard-Ratios" class="headerlink" title="Results：Hazard Ratios"></a>Results：Hazard Ratios</h3><p>我们使用 <code>cph.plot(hazard_ratios=True)</code> 可视化模型结果。输出示意如下：</p>
+<p><img src="/images/4.png" alt="Image Alt Text"></p>
+<p>从图中我们可以观察到：</p>
+<ul>
+<li><strong>onlineBackup_Yes</strong> 的风险比显著小于 1，说明购买技术支持服务的用户更不容易流失。</li>
+<li>Hazard Ratio 的解释：</li>
+</ul>
+<blockquote>
+<ul>
+<li>小于 1：该变量与更长的存续时间相关（风险下降）</li>
+<li>大于 1：该变量与更快的流失相关（风险上升）</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="Test-the-hypothesis-of-proportional-hazards"><a href="#Test-the-hypothesis-of-proportional-hazards" class="headerlink" title="Test the hypothesis of proportional hazards"></a>Test the hypothesis of proportional hazards</h3><p>Cox 模型最重要的前提假设是 <strong>比例风险假设</strong>：即不同组之间的风险比在整个时间内保持不变。</p>
+<p>我们使用 <code>check_assumptions()</code> 方法进行检验：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cph.check_assumptions(survival_pd, p_value_threshold=<span class="number">0.05</span>, show_plots=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出示例包括：</p>
+<ul>
+<li>每个变量的比例风险检验 p 值</li>
+<li>Schoenfeld 残差图</li>
+<li>违反比例风险假设的变量（若存在）</li>
+</ul>
+<p><img src="/images/5.png" alt="Image Alt Text"></p>
+<ul>
+<li><strong>若所有变量的 p 值均大于 0.05</strong>，则可以认为比例风险假设成立。</li>
+<li><strong>若某些变量显著违反假设</strong>，可能需要引入时间相关变量、使用分层模型或采用其他方法（如 AFT 模型）。</li>
+</ul>
+<hr>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Cox 比例风险模型为我们提供了多变量建模能力，能够评估哪些因素会增加或降低用户流失风险。在本案例中：</p>
+<ul>
+<li><strong>技术支持服务</strong> 和 <strong>DSL 网络服务</strong> 是两个显著与较高生存时间（留存）相关的特征。</li>
+<li>模型满足比例风险假设，可用于后续的预测和客户价值计算。</li>
+</ul>
+<hr>
+<h2 id="04-Accelerated-Failure-Time"><a href="#04-Accelerated-Failure-Time" class="headerlink" title="04_Accelerated Failure Time"></a>04_Accelerated Failure Time</h2><h3 id="Model-Intro-2"><a href="#Model-Intro-2" class="headerlink" title="Model Intro"></a>Model Intro</h3><p>Accelerated Failure Time（AFT）模型是另一种常用的生存分析模型，与 Cox 比例风险模型相比，AFT 更关注“生存时间的加速或减缓”，即：</p>
+<blockquote>
+<p><strong>某一协变量是否会让个体的生存时间变长或变短。</strong></p>
+</blockquote>
+<p>AFT 模型假设：<br>$$<br>log⁡(T)&#x3D;β0+β1X1+⋯+βnXn+ε\log(T) &#x3D; \beta_0 + \beta_1 X_1 + \cdots + \beta_n X_n + \varepsilon<br>$$<br>其中，T 是生存时间，X_i 是协变量，ε 是误差项，服从某种分布（例如对数正态、Weibull、对数逻辑等）。</p>
+<p>在本项目中，我们选择了 <strong>Log-Logistic 分布</strong> 来拟合模型。</p>
+<hr>
+<h3 id="Model-Building-Process-1"><a href="#Model-Building-Process-1" class="headerlink" title="Model Building Process"></a>Model Building Process</h3><p>我们从 <code>silver_monthly_customers</code> 表中读取数据，并对多个分类变量进行 One-hot 编码。选取以下变量作为协变量：</p>
+<ul>
+<li>是否有配偶（partner）</li>
+<li>是否有多线路服务（multipleLines）</li>
+<li>网络类型（internetService）</li>
+<li>是否订购在线安全、备份、设备保护、技术支持服务</li>
+<li>支付方式（自动转账、信用卡自动扣费）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aft = LogLogisticAFTFitter()</span><br><span class="line">aft.fit(survival_pd, duration_col=<span class="string">&#x27;tenure&#x27;</span>, event_col=<span class="string">&#x27;churn&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Median-Survival-Time"><a href="#Median-Survival-Time" class="headerlink" title="Median Survival Time"></a>Median Survival Time</h3><p>我们可以使用模型输出的中位生存时间（以 log-scale 表示）进行解释：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Median Survival Time:&#123;:.2f&#125;&quot;</span>.<span class="built_in">format</span>(np.exp(aft.median_survival_time_)))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出:</p>
+<p>Median Survival Time: 135.51</p>
+</blockquote>
+<p>即，在控制所有协变量后，用户的 <strong>中位预期生存时间为约 135.51</strong>。</p>
+<hr>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><p>AFT 模型输出包括：</p>
+<ul>
+<li>每个变量的系数估计值（在对数时间尺度下）</li>
+<li>标准误差、置信区间</li>
+<li>p 值用于判断显著性</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aft.print_summary()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/6.png" alt="Image Alt Text"></p>
+<p>从输出中可以看到：</p>
+<ul>
+<li><strong>订购附加服务</strong>（如：技术支持、在线安全&#x2F;备份、设备保护）有助于 <strong>显著提升客户留存时间</strong>；</li>
+<li><strong>自动化的支付方式</strong>（如自动转账、信用卡扣费）同样是维系长期客户关系的重要特征；</li>
+<li><strong>用户的家庭和账户特征</strong>（如有无配偶、是否有多线路）也对客户生命周期有重要影响。</li>
+</ul>
+<p>整体而言，以上变量均对用户的“加速留存”起到了积极作用，为后续客户分群、营销干预、精细化运营提供了强有力的依据。</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aft.plot()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/7.png" alt="Image Alt Text"></p>
+<p>图像展示了每个协变量对生存时间的乘数因子（Exponentiated Coefficient）：</p>
+<ul>
+<li><strong>大于 1</strong>：变量使生存时间延长；</li>
+<li><strong>小于 1</strong>：变量使生存时间缩短。</li>
+</ul>
+<hr>
+<p>太好了！你已经准备好了 <code>Customer Lifetime Value</code> 的全部核心代码，我们现在就来完成报告的最后一部分 <code>05_Customer Lifetime Value</code>，延续之前 Markdown 风格的结构与中文讲解。</p>
+<hr>
+<h2 id="05-Customer-Lifetime-Value"><a href="#05-Customer-Lifetime-Value" class="headerlink" title="05_Customer Lifetime Value"></a>05_Customer Lifetime Value</h2><h3 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h3><p>在前文的生存分析基础上，我们进一步尝试回答一个关键业务问题：</p>
+<blockquote>
+<p><strong>一个客户将为公司带来多少价值？</strong><br> 如何衡量该客户在未来生命周期内的经济贡献？**</p>
+</blockquote>
+<p>我们结合 <strong>CoxPH 模型的生存概率预测</strong> 与 <strong>单位利润折现计算</strong>，构建了客户生命周期价值（Customer Lifetime Value，CLV）的估算模型，并进行了可视化。</p>
+<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h3><h4 id="1：用户特征输入"><a href="#1：用户特征输入" class="headerlink" title="1：用户特征输入"></a>1：用户特征输入</h4><p>我们设计了一个简洁的交互式函数 <code>get_widget_values()</code>，允许用户输入多个重要特征变量，包括：</p>
+<ul>
+<li>是否有家属 (<code>dependents_Yes</code>)</li>
+<li>是否订购 DSL 网络 (<code>internetService_DSL</code>)</li>
+<li>是否启用在线备份 (<code>onlineBackup_Yes</code>)</li>
+<li>是否启用技术支持 (<code>techSupport_Yes</code>)</li>
+<li>是否已婚或有配偶 (<code>partner_Yes</code>)</li>
+<li>内部收益率（IRR），默认为 10%，用于计算未来现金流的现值</li>
+</ul>
+<p>输入的变量被转换为 DataFrame，供模型进行后续预测。</p>
+<h4 id="2：CoxPH-模型预测生存函数"><a href="#2：CoxPH-模型预测生存函数" class="headerlink" title="2：CoxPH 模型预测生存函数"></a>2：CoxPH 模型预测生存函数</h4><p>我们调用 <code>CoxPHFitter.predict_survival_function()</code> 对输入的客户特征进行预测，得到每个月的 <strong>生存概率（Survival Probability）</strong>。这代表该客户在第 <em>n</em> 月 <strong>仍为活跃用户</strong> 的概率。</p>
+<h4 id="3：估算利润和现值"><a href="#3：估算利润和现值" class="headerlink" title="3：估算利润和现值"></a>3：估算利润和现值</h4><p>我们假设客户每月能带来固定利润（例如 $30），则可通过生存概率调整后的期望收益计算出每月的 <strong>平均预期利润（Expected Monthly Profit）</strong>。</p>
+<p>再通过 IRR 对未来收益进行折现，得到：</p>
+<ul>
+<li>每月净现值（NPV of Expected Profit）</li>
+<li>累积净现值（Cumulative NPV）</li>
+</ul>
+<p>最终我们得到了如下的数据表：</p>
+<table>
+<thead>
+<tr>
+<th>Contract Month</th>
+<th>Survival Probability</th>
+<th>Avg Expected Profit</th>
+<th>NPV</th>
+<th>Cumulative NPV</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0.945202</td>
+<td>$28.36</td>
+<td>$26.18</td>
+<td>$26.18</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.922827</td>
+<td>$27.68</td>
+<td>$23.59</td>
+<td>$49.77</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p>（注：实际数值根据用户输入的特征而变化）</p>
+<hr>
+<h3 id="可视化结果：客户终身价值趋势"><a href="#可视化结果：客户终身价值趋势" class="headerlink" title="可视化结果：客户终身价值趋势"></a>可视化结果：客户终身价值趋势</h3><p>我们从预测结果中每隔 6 个月取样，绘制客户 CLV 的变化趋势图：</p>
+<blockquote>
+<p><strong>横轴：客户订阅月数</strong><br><strong>纵轴：客户在对应月数时的累积净现值</strong></p>
+</blockquote>
+<p><img src="/images/8.png" alt="Image Alt Text"></p>
+<p>通过该图表，企业可以明确地看到：</p>
+<ul>
+<li>哪些月份客户的价值达到盈亏平衡（Payback Point）</li>
+<li>哪些客户特征带来的 CLV 较低，需重点挽留</li>
+<li>可用于支撑营销策略、订阅设计、客户分群、预测回报等场景</li>
+</ul>
+<hr>
+<h3 id="Conclusion-1"><a href="#Conclusion-1" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>本部分基于生存概率模型，成功构建了一个灵活的 CLV 分析框架。通过模拟客户在生命周期内的持续价值并考虑现金流折现因素，我们提供了一个 <strong>量化客户长期价值的重要工具</strong>。</p>
+<p>这项方法可以用于：</p>
+<ul>
+<li>高价值客户的识别与优先服务</li>
+<li>流失风险高但 CLV 低的客户筛除</li>
+<li>ROI 计算与预算分配优化</li>
+</ul>
+<p>未来可进一步结合 RFM 分析、推荐系统等方法，扩展更完整的客户 360 度画像。</p>
+<p>当然，下面是简洁版的 Summary，总结核心内容、方法和价值：</p>
+<hr>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>本报告系统地应用了 <strong>生存分析（Survival Analysis）</strong> 方法，对电信行业客户的流失行为和生命周期价值进行了深入建模与分析。主要工作包括：</p>
+<ul>
+<li><strong>Kaplan-Meier 曲线与 Log-Rank 检验</strong>：可视化不同群体的生存曲线，识别影响留存的关键特征；</li>
+<li><strong>Cox 比例风险模型</strong>：量化各特征对流失风险的影响，提供解释性强的风险因子分析；</li>
+<li><strong>Accelerated Failure Time 模型</strong>：从时间角度评估变量对客户生命周期的延长效果；</li>
+<li><strong>Customer Lifetime Value 分析</strong>：结合生存概率与现金流折现，构建客户价值预测模型，并实现了可视化展示。</li>
+</ul>
+<p>这些方法帮助我们更好地理解客户流失模式，提升客户细分与挽留策略的科学性，为业务优化提供数据支持。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2025/04/13/Q2.2%20Survival%20Analysis%20Report/">Q2.2 Survival Analysis Report</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2025-04-13, 21:45:00</p>
+        <p><span>Updated:</span>2025-04-13, 21:58:22</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2025/04/13/Q2.2%20Survival%20Analysis%20Report/" title="Q2.2 Survival Analysis Report">http://example.com/2025/04/13/Q2.2%20Survival%20Analysis%20Report/</a>
+            <span class="copy-path" data-clipboard-text="From http://example.com/2025/04/13/Q2.2%20Survival%20Analysis%20Report/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2025/04/13/My-New-Blog-Post/">
+                    My New Blog Post
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2025/04/13/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Q2-2-Survival-Analysis-Report"><span class="toc-number">1.</span> <span class="toc-text">Q2.2 Survival Analysis Report</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12212826-%E8%82%96%E6%B6%B5%E6%9B%A6"><span class="toc-number">1.0.1.</span> <span class="toc-text">12212826 肖涵曦</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#01-Intro"><span class="toc-number">1.1.</span> <span class="toc-text">01_Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Overview"><span class="toc-number">1.1.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Telco-Use-Case-Examples"><span class="toc-number">1.1.2.</span> <span class="toc-text">Telco Use Case Examples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#About-This-Series-of-Notebooks"><span class="toc-number">1.1.3.</span> <span class="toc-text">About This Series of Notebooks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#About-the-Data"><span class="toc-number">1.1.4.</span> <span class="toc-text">About the Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configure-the-Environment"><span class="toc-number">1.1.5.</span> <span class="toc-text">Configure the Environment</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-Kaplan-Meier"><span class="toc-number">1.2.</span> <span class="toc-text">02_Kaplan-Meier</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-Intro"><span class="toc-number">1.2.1.</span> <span class="toc-text">Model Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Key-steps"><span class="toc-number">1.2.2.</span> <span class="toc-text">Key steps</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%A8%E4%BD%93%E7%94%A8%E6%88%B7%E7%9A%84%E7%94%9F%E5%AD%98%E6%9B%B2%E7%BA%BF"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1. 全体用户的生存曲线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E5%88%86%E7%B1%BB%E5%8F%98%E9%87%8F%E4%B8%8B%E7%9A%84%E7%94%9F%E5%AD%98%E5%AF%B9%E6%AF%94"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2. 不同分类变量下的生存对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Log-Rank-%E6%A3%80%E9%AA%8C%EF%BC%88%E6%A3%80%E9%AA%8C%E7%BB%84%E9%97%B4%E7%94%9F%E5%AD%98%E6%9B%B2%E7%BA%BF%E6%98%AF%E5%90%A6%E6%98%BE%E8%91%97%E4%B8%8D%E5%90%8C%EF%BC%89"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">3. Log-Rank 检验（检验组间生存曲线是否显著不同）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-Cox-Proportional-Hazards"><span class="toc-number">1.3.</span> <span class="toc-text">03_Cox Proportional Hazards</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-Intro-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">Model Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-Building-Process"><span class="toc-number">1.3.2.</span> <span class="toc-text">Model Building Process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Results%EF%BC%9AHazard-Ratios"><span class="toc-number">1.3.3.</span> <span class="toc-text">Results：Hazard Ratios</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-the-hypothesis-of-proportional-hazards"><span class="toc-number">1.3.4.</span> <span class="toc-text">Test the hypothesis of proportional hazards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">1.3.5.</span> <span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-Accelerated-Failure-Time"><span class="toc-number">1.4.</span> <span class="toc-text">04_Accelerated Failure Time</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-Intro-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">Model Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-Building-Process-1"><span class="toc-number">1.4.2.</span> <span class="toc-text">Model Building Process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Median-Survival-Time"><span class="toc-number">1.4.3.</span> <span class="toc-text">Median Survival Time</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Results"><span class="toc-number">1.4.4.</span> <span class="toc-text">Results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#05-Customer-Lifetime-Value"><span class="toc-number">1.5.</span> <span class="toc-text">05_Customer Lifetime Value</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Target"><span class="toc-number">1.5.1.</span> <span class="toc-text">Target</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Steps"><span class="toc-number">1.5.2.</span> <span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%9A%E7%94%A8%E6%88%B7%E7%89%B9%E5%BE%81%E8%BE%93%E5%85%A5"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">1：用户特征输入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%EF%BC%9ACoxPH-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%94%9F%E5%AD%98%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">2：CoxPH 模型预测生存函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%EF%BC%9A%E4%BC%B0%E7%AE%97%E5%88%A9%E6%B6%A6%E5%92%8C%E7%8E%B0%E5%80%BC"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">3：估算利润和现值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BB%93%E6%9E%9C%EF%BC%9A%E5%AE%A2%E6%88%B7%E7%BB%88%E8%BA%AB%E4%BB%B7%E5%80%BC%E8%B6%8B%E5%8A%BF"><span class="toc-number">1.5.3.</span> <span class="toc-text">可视化结果：客户终身价值趋势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion-1"><span class="toc-number">1.5.4.</span> <span class="toc-text">Conclusion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">1.6.</span> <span class="toc-text">Summary</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Q2.2 Survival Analysis Report　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2025/04/13/My-New-Blog-Post/" title="Pre: My New Blog Post">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2025/04/13/hello-world/" title="Next: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2025/04/13/My-New-Blog-Post/">My New Blog Post</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/04/13/Q2.2%20Survival%20Analysis%20Report/">Q2.2 Survival Analysis Report</a></li><li class="post-list-item"><a class="post-list-link" href="/2025/04/13/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2025 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
